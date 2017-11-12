@@ -7,11 +7,12 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
-import android.widget.ListView
-import android.widget.ProgressBar
-import android.widget.TextView
-import com.google.firebase.database.*
-import java.util.*
+import com.google.firebase.database.ChildEventListener
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.main_activity_layout.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,30 +22,12 @@ class MainActivity : AppCompatActivity() {
     private val sensorDataList = ArrayList<SensorData>()
     private var sensorDataAdapter: SensorDataAdapter? = null
 
-    private var listView: ListView? = null
-
-    private var PM2txt: TextView? = null
-    private var PM10txt: TextView? = null
-    private var DataTxt: TextView? = null
-
-    private var progressBar: ProgressBar? = null
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity_layout)
 
-        listView = findViewById(R.id.listView)
-
-        PM2txt = findViewById(R.id.PM2TV)
-        PM10txt = findViewById(R.id.PM10TV)
-        DataTxt = findViewById(R.id.DataTV)
-
-        progressBar = findViewById(R.id.progress)
-
-
         sensorDataAdapter = SensorDataAdapter(this, sensorDataList)
-        listView!!.adapter = sensorDataAdapter
+        list_main.adapter = sensorDataAdapter
 
         firebaseDatabase = FirebaseDatabase.getInstance()
         databaseReference = firebaseDatabase!!.getReference(SENSOR_DATA)
@@ -75,14 +58,14 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        listView!!.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, i, l -> setData(sensorDataList[i]) }
+        list_main.onItemClickListener = AdapterView.OnItemClickListener { _, _, i, _ -> setData(sensorDataList[i]) }
     }
 
     private fun setData(sensorData: SensorData?) {
-        PM2txt!!.text = sensorData!!.pm25.toString()
-        PM10txt!!.text = sensorData.pm10.toString()
-        DataTxt!!.text = sensorData.date.toString()
-        progressBar!!.visibility = View.INVISIBLE
+        text_pm25.text = sensorData!!.pm25.toString()
+        text_pm10.text = sensorData.pm10.toString()
+        text_date.text = sensorData.date.toString()
+        progress_list.visibility = View.INVISIBLE
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -108,7 +91,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
 
-        private val Tag = MainActivity::class.java!!.simpleName
+        private val Tag = MainActivity::class.java.simpleName
 
         private val SENSOR_DATA = "SensorData"
     }

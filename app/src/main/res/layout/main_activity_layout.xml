@@ -29,7 +29,7 @@
      android:text="@string/date"
      android:textSize="20sp"
      android:gravity="center"
-     android:id="@+id/DataTV"
+     android:id="@+id/text_date"
      android:layout_width="match_parent"
      android:layout_height="wrap_content" />
 
@@ -46,7 +46,7 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content" />
   <TextView
-      android:id="@+id/PM2TV"
+      android:id="@+id/text_pm25"
       android:text="@string/pm2_5_data"
       android:textSize="28sp"
       android:layout_margin="5dp"
@@ -73,7 +73,7 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content" />
   <TextView
-      android:id="@+id/PM10TV"
+      android:id="@+id/text_pm10"
       android:text="@string/pm10_data"
       android:textSize="28sp"
       android:layout_margin="5dp"
@@ -93,14 +93,14 @@
     android:layout_margin="5dp"/>
 
  <android.support.v7.widget.ListViewCompat
-     android:id="@+id/listView"
+     android:id="@+id/list_main"
      android:layout_width="match_parent"
      android:layout_height="wrap_content">
 
  </android.support.v7.widget.ListViewCompat>
 </LinearLayout>
  <ProgressBar
-     android:id="@+id/progress"
+     android:id="@+id/progress_list"
      android:layout_centerHorizontal="true"
      android:layout_centerVertical="true"
      android:layout_width="wrap_content"

@@ -11,15 +11,10 @@ import java.text.SimpleDateFormat
 class SensorDataAdapter(context: Context, objects: List<SensorData>) : ArrayAdapter<SensorData>(context, 0, objects) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        var convertView = convertView
-
-        if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_layout, parent, false)
-        }
-
-        val dateTextView = convertView!!.findViewById<TextView>(R.id.Data)
-        val pm2TextView = convertView.findViewById<TextView>(R.id.PM2)
-        val pm10TextView = convertView.findViewById<TextView>(R.id.PM10)
+        val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_layout, parent, false)
+        val dateTextView = view.findViewById<TextView>(R.id.Data)
+        val pm2TextView = view.findViewById<TextView>(R.id.PM2)
+        val pm10TextView = view.findViewById<TextView>(R.id.PM10)
 
         val sensorData = getItem(position)
 
@@ -30,7 +25,7 @@ class SensorDataAdapter(context: Context, objects: List<SensorData>) : ArrayAdap
         val pm10 = sensorData.pm10
         pm2TextView.text = pm2.toString()
         pm10TextView.text = pm10.toString()
-        return convertView
+        return view
     }
 
 }
