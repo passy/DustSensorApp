@@ -79,8 +79,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setData(sensorData: SensorData?) {
-        PM2txt!!.text = sensorData!!.pM2.toString()
-        PM10txt!!.text = sensorData.pM10.toString()
+        PM2txt!!.text = sensorData!!.pm25.toString()
+        PM10txt!!.text = sensorData.pm10.toString()
         DataTxt!!.text = sensorData.date.toString()
         progressBar!!.visibility = View.INVISIBLE
     }

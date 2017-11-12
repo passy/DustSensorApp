@@ -26,8 +26,8 @@ class SensorDataAdapter(context: Context, objects: List<SensorData>) : ArrayAdap
         val datestring = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(sensorData!!.date)
 
         dateTextView.text = datestring
-        val pm2 = sensorData.pM2
-        val pm10 = sensorData.pM10
+        val pm2 = sensorData.pm25
+        val pm10 = sensorData.pm10
         pm2TextView.text = pm2.toString()
         pm10TextView.text = pm10.toString()
         return convertView

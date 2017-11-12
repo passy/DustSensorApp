@@ -1,23 +1,8 @@
 package com.wegrzyn.marcin.dustsensorapp
 
+import java.time.Instant
 import java.util.Date
 
-class SensorData {
-
-    var pM2: Float = 0.toFloat()
-    var pM10: Float = 0.toFloat()
-    var date: Date? = null
-
-    constructor(PM2: Float, PM10: Float, date: Date) {
-        this.pM2 = PM2
-        this.pM10 = PM10
-        this.date = date
-    }
-
-    constructor() {
-        pM10 = 0f
-        pM2 = 0f
-    }
-
-
-}
+// Firebase requires an empty-argument constructor, so we have to provide default values for
+// every field here.
+class SensorData(val pm25: Float = 0f, val pm10: Float = 0f, val date: Date = Date(0))
