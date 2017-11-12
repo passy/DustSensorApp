@@ -1,0 +1,36 @@
+package com.wegrzyn.marcin.dustsensorapp
+
+import android.content.Context
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.TextView
+import java.text.SimpleDateFormat
+
+class SensorDataAdapter(context: Context, objects: List<SensorData>) : ArrayAdapter<SensorData>(context, 0, objects) {
+
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+        var convertView = convertView
+
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_layout, parent, false)
+        }
+
+        val dateTextView = convertView!!.findViewById<TextView>(R.id.Data)
+        val pm2TextView = convertView.findViewById<TextView>(R.id.PM2)
+        val pm10TextView = convertView.findViewById<TextView>(R.id.PM10)
+
+        val sensorData = getItem(position)
+
+        val datestring = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(sensorData!!.date)
+
+        dateTextView.text = datestring
+        val pm2 = sensorData.pM2
+        val pm10 = sensorData.pM10
+        pm2TextView.text = pm2.toString()
+        pm10TextView.text = pm10.toString()
+        return convertView
+    }
+
+}
