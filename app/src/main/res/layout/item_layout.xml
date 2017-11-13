@@ -11,11 +11,11 @@
         android:layout_margin="5dp">
 
         <TextView
-            android:text="Data: "
+            android:text="Date: "
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
         <TextView
-            android:id="@+id/Data"
+            android:id="@+id/text_date"
             android:text="data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent" />
             <TextView
-                android:id="@+id/PM2"
+                android:id="@+id/text_pm25"
                 android:text="PM2"
                 android:textSize="15sp"
                 android:layout_width="wrap_content"
@@ -62,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent" />
             <TextView
-                android:id="@+id/PM10"
+                android:id="@+id/text_pm10"
                 android:text="PM10"
                 android:textSize="15sp"
                 android:layout_width="wrap_content"
