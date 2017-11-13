@@ -16,27 +16,23 @@ import kotlinx.android.synthetic.main.main_activity_layout.*
 
 class MainActivity : AppCompatActivity() {
 
-    private var firebaseDatabase: FirebaseDatabase? = null
-    private var databaseReference: DatabaseReference? = null
-
     private val sensorDataList = ArrayList<SensorData>()
-    private var sensorDataAdapter: SensorDataAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity_layout)
 
-        sensorDataAdapter = SensorDataAdapter(this, sensorDataList)
+        val sensorDataAdapter = SensorDataAdapter(this, sensorDataList)
         list_main.adapter = sensorDataAdapter
 
-        firebaseDatabase = FirebaseDatabase.getInstance()
-        databaseReference = firebaseDatabase!!.getReference(SENSOR_DATA)
-        val query = databaseReference!!.limitToLast(6)
+        val firebaseDatabase = FirebaseDatabase.getInstance()
+        val databaseReference = firebaseDatabase.getReference(SENSOR_DATA)
+        val query = databaseReference.limitToLast(6)
         query.addChildEventListener(object : ChildEventListener {
 
             override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
                 val sensorData = dataSnapshot.getValue<SensorData>(SensorData::class.java)
-                sensorDataAdapter!!.add(sensorData)
+                sensorDataAdapter.add(sensorData)
 
                 setData(sensorData)
             }
@@ -62,7 +58,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setData(sensorData: SensorData?) {
-        text_pm25.text = sensorData!!.pm25.toString()
+        if (sensorData == null) return
+        text_pm25.text = sensorData.pm25.toString()
         text_pm10.text = sensorData.pm10.toString()
         text_date.text = sensorData.date.toString()
         progress_list.visibility = View.INVISIBLE
