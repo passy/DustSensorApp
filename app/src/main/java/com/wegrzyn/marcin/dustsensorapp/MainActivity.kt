@@ -10,7 +10,6 @@ import android.widget.AdapterView
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.main_activity_layout.*
 
@@ -32,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
                 val sensorData = dataSnapshot.getValue<SensorData>(SensorData::class.java)
-                sensorDataAdapter.add(sensorData)
+                sensorDataAdapter.insert(sensorData, 0)
 
                 setData(sensorData)
             }
