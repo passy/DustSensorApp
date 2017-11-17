@@ -15,7 +15,7 @@ class SensorDataAdapter(context: Context, objects: List<SensorData>) : ArrayAdap
         val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_layout, parent, false)
         val textDate: TextView = view.findViewById(R.id.text_date)
         val textPm25: TextView = view.findViewById(R.id.text_pm25)
-        val textPm10: TextView = view.findViewById(R.id.text_pm25)
+        val textPm10: TextView = view.findViewById(R.id.text_pm10)
         val sensorData = getItem(position)
 
         textDate.text = SimpleDateFormat.getDateTimeInstance().format(sensorData.date)

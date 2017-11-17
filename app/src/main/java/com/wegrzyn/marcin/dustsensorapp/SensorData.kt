@@ -1,6 +1,5 @@
 package com.wegrzyn.marcin.dustsensorapp
 
-import java.time.Instant
 import java.util.Date
 
 // Firebase requires an empty-argument constructor, so we have to provide default values for
